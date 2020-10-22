@@ -64,6 +64,10 @@ router.post('/login',
 			}
 
 			const isMatch = encrypt(password) === user.password;
+			if (!isMatch) {
+				return res.status(400).json({ message: 'Invalid password' });
+			}
+			
 		} catch (e) {
 			res.status(400).json({ error: e.message });
 			return;
