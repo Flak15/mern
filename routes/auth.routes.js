@@ -21,7 +21,6 @@ router.post('/register',
 		try {
 			const { email, password } = req.body;
 			const errors = validationResult(req);
-			console.log(email, password);
 			if (!errors.isEmpty()) {
 				return res.status(400).json({
 					errors: errors.array(),
@@ -55,7 +54,6 @@ router.post('/login',
 		try {
 			const { email, password } = req.body;
 			const errors = validationResult(req);
-			console.log(email, password);
 			if (!errors.isEmpty()) {
 				return res.status(400).json({
 					errors: errors.array(),
@@ -73,7 +71,7 @@ router.post('/login',
 
 			const token = jwt.sign(
 				{ userId: user.id},
-				secretJwt,
+				config.get('secretJwt'),
 				{ expiresIn: '1h' }
 			);
 
