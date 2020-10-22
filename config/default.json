@@ -1,4 +1,5 @@
 {
 	"port": 4000,
-	"mongoURI": "mongodb://localhost/mern"
+	"mongoURI": "mongodb://localhost/mern",
+	"secretJwt": "saltsaltsalt"
 }

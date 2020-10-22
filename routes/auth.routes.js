@@ -2,6 +2,9 @@ import Router from 'express';
 import User from '../models/User.js';
 import encrypt from '../encrypt.js';
 import { body, validationResult } from 'express-validator';
+import jwt from 'jsonwebtoken';
+import config from 'config';
+
 const router = Router();
 
 router.post('/test', (req, res) => {
@@ -65,9 +68,16 @@ router.post('/login',
 
 			const isMatch = encrypt(password) === user.password;
 			if (!isMatch) {
-				return res.status(400).json({ message: 'Invalid password' });
+				return res.status(400).json({ message: 'Incorrect password' });
 			}
-			
+
+			const token = jwt.sign(
+				{ userId: user.id},
+				secretJwt,
+				{ expiresIn: '1h' }
+			);
+
+			res.json( { token, userId: user.id });
 		} catch (e) {
 			res.status(400).json({ error: e.message });
 			return;
