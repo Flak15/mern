@@ -7,10 +7,6 @@ import config from 'config';
 
 const router = Router();
 
-router.post('/test', (req, res) => {
-	console.log(req.body);
-});
-
 // api/register
 router.post('/register',
 	[
@@ -37,7 +33,6 @@ router.post('/register',
 			res.status(200).json({ message: 'User created' });
 			return;
 		} catch (e) {
-			
 			res.status(400).json({ error: e.message });
 			return;
 		}
