@@ -1,5 +1,6 @@
 {
 	"port": 4000,
 	"mongoURI": "mongodb://localhost/mern",
-	"secretJwt": "saltsaltsalt"
+	"secretJwt": "saltsaltsalt", 
+	"baseUrl": "localhost:5000"
 }

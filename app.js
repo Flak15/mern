@@ -3,12 +3,15 @@ import express from 'express';
 import config from 'config';
 import mongoose from 'mongoose';
 import auth from './routes/auth.routes.js';
-import link from './routes/link.routes';
+import link from './routes/link.routes.js';
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use((req, res, next) => {
+  console.log(req.headers.authorization);
+  next();
+});
 
 app.use('/api/auth', auth);
 app.use('/api/link', link);
