@@ -1,6 +1,6 @@
 import Router from 'express';
 import auth from '../middleware/auth.middleware.js';
-import Link from '../models/User.js';
+import Link from '../models/Link.js';
 import shortid from 'shortid';
 import config from 'config';
 
@@ -26,8 +26,8 @@ router.post('/generate', auth, async (req, res) => {
 
 router.get('/', auth, async (req, res) => {
   try {
-    const links = await Link.find({ owner: req.user.userId });
-    res.json(links);
+    const link = await Link.find({ owner: req.user.userId });
+    res.json(link);
   } catch (e) {
     res.status(400).json({ error: e.message });
     return;

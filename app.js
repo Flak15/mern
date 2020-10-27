@@ -8,10 +8,10 @@ import link from './routes/link.routes.js';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use((req, res, next) => {
-  console.log(req.headers.authorization);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(req.headers.authorization);
+//   next();
+// });
 
 app.use('/api/auth', auth);
 app.use('/api/link', link);

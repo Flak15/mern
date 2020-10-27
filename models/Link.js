@@ -1,4 +1,4 @@
-import mongoose, { Types } from 'mongoose';
+import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
 
@@ -8,7 +8,7 @@ const linkSchema = new Schema({
   code: { type: String, requred: true, unique: true },
   date: { type: Date, default: Date.now },
   clicks: { type: Number, deafult: 0 },
-  owner: { type: Types.ObjectId, ref: 'User' }
+  owner: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
 export default model('Link', linkSchema);

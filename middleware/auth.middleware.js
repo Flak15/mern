@@ -7,15 +7,15 @@ export default (req, res, next) => {
     }
     try {
         const token = req.headers.authorization.split(' ')[1];
-
+        console.log('Token',token);
         if (!token) {
-            return res.status(401).json({ message: 'Authorization error' });
+            return res.status(401).json({ message: 'Authorization error1' });
         }
         const user = jwt.verify(token, config.get('secretJwt'));
         req.user = user;
         next();
     } catch (e) {
-        res.status(401).json({ message: 'Authorization error' });
+        res.status(401).json({ message: JSON.stringify(e) });
     }
 
 }
