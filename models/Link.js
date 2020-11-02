@@ -7,7 +7,7 @@ const linkSchema = new Schema({
   to: { type: String, requred: true, unique: true },
   code: { type: String, requred: true, unique: true },
   date: { type: Date, default: Date.now },
-  clicks: { type: Number, deafult: 0 },
+  clicks: { type: Number, default: 0 },
   owner: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
