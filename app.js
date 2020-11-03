@@ -4,6 +4,7 @@ import config from 'config';
 import mongoose from 'mongoose';
 import auth from './routes/auth.routes.js';
 import link from './routes/link.routes.js';
+import redirect from './routes/redirect.routes.js';
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/auth', auth);
 app.use('/api/link', link);
+app.use('/t', redirect);
 
 const start = async () => {
   try {
