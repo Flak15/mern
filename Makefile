@@ -1,6 +1,6 @@
 start:
-	npm run start
+	NODE_ENV=production npm run start
 develop:
-	npm run server
+	NODE_ENV=develop npm run server
 lint:
 	npx eslint .

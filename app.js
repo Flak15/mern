@@ -9,14 +9,16 @@ import redirect from './routes/redirect.routes.js';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use((req, res, next) => {
-//   console.log(req.headers.authorization);
-//   next();
-// });
-
 app.use('/api/auth', auth);
 app.use('/api/link', link);
 app.use('/t', redirect);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static('../mern-client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile('/home/user/mern-client/build/index.html');
+  });
+}
 
 const start = async () => {
   try {

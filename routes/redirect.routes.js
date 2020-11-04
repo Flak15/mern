@@ -5,11 +5,13 @@ const router = Router();
 
 
 router.get('/:code', async (req, res) => {
+    console.log('redirect');
     try {
         const link = await Link.findOne({ code: req.params.code });
         if (link) {
             link.clicks++;
             await link.save();
+            console.log(link.from);
             res.redirect(link.from);
         }
     } catch (e) {

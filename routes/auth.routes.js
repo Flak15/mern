@@ -75,8 +75,19 @@ router.post('/login',
 			res.status(400).json({ error: e.message });
 			return;
 		}
-	
-
 });
+
+router.post('/verify',
+	async (req, res) => {
+		try {
+			const { token } = req.body;
+			const user = jwt.verify(token, config.get('secretJwt'));
+			res.json(user);
+		} catch (e) {
+			res.status(400).json({ error: e.message });
+			return;
+		}
+	}
+);
 
 export default router;
